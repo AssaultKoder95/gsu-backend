@@ -1,15 +1,28 @@
-// src/index.js
-import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import audit from "express-requests-logger";
+
+import connectDB from "./dependencies/db";
+import express, { Express } from "express";
+
+import taskRoutes from "./routes/tasks";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+connectDB();
+
+app.use(express.json());
+app.use(
+  audit({
+    request: {
+      maskBody: ["password"],
+    },
+  }),
+);
+
+app.use("/api/v1/tasks", taskRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

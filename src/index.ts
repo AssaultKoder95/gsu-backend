@@ -3,6 +3,7 @@ import audit from "express-requests-logger";
 
 import connectDB from "./dependencies/db";
 import express, { Express } from "express";
+import cors from "cors";
 
 import taskRoutes from "./routes/tasks";
 
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
+app.use(cors());
 app.use(express.json());
 app.use(
   audit({

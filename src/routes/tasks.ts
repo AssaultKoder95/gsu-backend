@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import * as taskController from "../task";
+import { Task } from "../task/shared";
 
 const router = Router();
 
@@ -69,6 +70,16 @@ router.get('/search', async (req: Request, res: Response) => {
   try {
     const searchTerm = req.query.q as string;
     const tasks = await taskController.searchTasks(searchTerm);
+    res.status(200).json(tasks);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/filter', async (req: Request, res: Response) => {
+  try {
+    const status = req.query.status as Task['status'];
+    const tasks = await taskController.filterTasks({ status });
     res.status(200).json(tasks);
   } catch (error: any) {
     res.status(500).json({ error: error.message });

@@ -22,7 +22,7 @@ const TaskSchema: Schema = new Schema(
   { timestamps: true },
 );
 
-TaskSchema.index({ title: 'text' });
-TaskSchema.index({ status: 'text' });
+TaskSchema.index({ title: "text" });
+TaskSchema.index({ status: "text" });
 
 export default mongoose.model<ITask>("Task", TaskSchema);

@@ -15,7 +15,6 @@ router.post("/", async (req: Request, res: Response) => {
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-
     const skip = req.query.skip as string;
     const limit = req.query.limit as string;
     const tasks = await taskController.getAllTasks({ skip, limit });
@@ -66,7 +65,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.get('/search', async (req: Request, res: Response) => {
+router.get("/search", async (req: Request, res: Response) => {
   try {
     const searchTerm = req.query.q as string;
     const tasks = await taskController.searchTasks(searchTerm);
@@ -76,9 +75,9 @@ router.get('/search', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/filter', async (req: Request, res: Response) => {
+router.get("/filter", async (req: Request, res: Response) => {
   try {
-    const status = req.query.status as Task['status'];
+    const status = req.query.status as Task["status"];
     const tasks = await taskController.filterTasks({ status });
     res.status(200).json(tasks);
   } catch (error: any) {

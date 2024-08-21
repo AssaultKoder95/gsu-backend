@@ -4,7 +4,7 @@ type SearchParams = {
   id?: string;
   skip?: string;
   limit?: string;
-}
+};
 
 async function getAllTasks({ id, skip, limit }: SearchParams) {
   if (id) {

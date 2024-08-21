@@ -5,4 +5,11 @@ import updateTask from "./update";
 import searchTasks from "./search";
 import filterTasks from "./filter";
 
-export { getAllTasks, createTask, deleteTask, updateTask, searchTasks, filterTasks };
+export {
+  getAllTasks,
+  createTask,
+  deleteTask,
+  updateTask,
+  searchTasks,
+  filterTasks,
+};

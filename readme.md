@@ -20,15 +20,19 @@ The API should be running on port 6546 OR you can visit the following URL - `htt
 
 ## Backend Requirements ( Node.js, TypeScript )
 
-[x] Set up a RESTful API using Express.js.
+    - [x] Set up a RESTful API using Express.js.
+    - [x] Implement CRUD operations for managing tasks.
+    - [x] Use TypeScript for type safety and better code organization.
+    - [x] Integrate a database (e.g., MongoDB, PostgreSQL, InMemory) for storing tasks.
+    - [x] Implement validation and error handling for API requests.
 
-[x] Implement CRUD operations for managing tasks.
-
-[x] Use TypeScript for type safety and better code organization.
-
-[x] Integrate a database (e.g., MongoDB, PostgreSQL, InMemory) for storing tasks.
-
-[x] Implement validation and error handling for API requests.
+## Bonus Tasks
+    - [] Implement user authentication and authorization.
+    - [] Add drag-and-drop functionality for reordering tasks.
+    - [x] Implement search and filter functionality for tasks.
+    - [] Integrate real-time updates using WebSockets or a similar technology.
+    - [] Implement server-side rendering (SSR) for better performance and SEO.
+    - [] Write unit tests and/or end-to-end tests for the application.
 
 ## Additional Info
 
@@ -42,4 +46,4 @@ Technique which I believe can be beneficial for our system when we hit a certain
 
 1. Caching ( either using redis / in-memory node cache )
 
-## Application Screenshots
+## Application Screenshots / Videos

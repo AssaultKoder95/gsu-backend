@@ -25,6 +25,31 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+router.get("/search", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const searchTerm = req.query.q as string;
+    const tasks = await taskController.searchTasks(searchTerm);
+    return res.status(200).json(tasks);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/filter", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const status = req.query.status as Task["status"];
+
+    const { error } = validateStatus({ status });
+    if (error) throw new Error(error.details[0].message);
+
+    const tasks = await taskController.filterTasks({ status });
+    return res.status(200).json(tasks);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const skip = req.query.skip as string;
@@ -73,30 +98,6 @@ router.delete("/:id", async (req: Request, res: Response, next: NextFunction) =>
   try {
     await taskController.deleteTask(req.params.id);
     return res.status(200).json({ message: "Task deleted successfully" });
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get("/search", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const searchTerm = req.query.q as string;
-    const tasks = await taskController.searchTasks(searchTerm);
-    return res.status(200).json(tasks);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get("/filter", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const status = req.query.status as Task["status"];
-
-    const { error } = validateStatus({ status });
-    if (error) throw new Error(error.details[0].message);
-
-    const tasks = await taskController.filterTasks({ status });
-    return res.status(200).json(tasks);
   } catch (error) {
     next(error);
   }

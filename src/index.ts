@@ -6,6 +6,7 @@ import express, { Express } from "express";
 import cors from "cors";
 
 import taskRoutes from "./routes/tasks";
+import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use(
 );
 
 app.use("/api/v1/tasks", taskRoutes);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

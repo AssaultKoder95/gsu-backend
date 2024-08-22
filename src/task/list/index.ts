@@ -11,7 +11,7 @@ async function getAllTasks({ id, skip, limit }: SearchParams) {
 
   if (id) {
     const task = await TaskModel.findById(id);
-    if (task === null) return [];
+    if (!task) throw new Error('Task not found');
 
     tasks.push(task);
   }

@@ -1,17 +1,9 @@
 "use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filterTasks =
-  exports.searchTasks =
-  exports.updateTask =
-  exports.deleteTask =
-  exports.createTask =
-  exports.getAllTasks =
-    void 0;
+exports.filterTasks = exports.searchTasks = exports.updateTask = exports.deleteTask = exports.createTask = exports.getAllTasks = void 0;
 const list_1 = __importDefault(require("./list"));
 exports.getAllTasks = list_1.default;
 const create_1 = __importDefault(require("./create"));

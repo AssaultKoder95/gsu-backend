@@ -6,7 +6,18 @@ type SearchParams = {
 };
 
 async function filterTaskByStatus({ status }: SearchParams) {
-  return TaskModel.find({ status });
+  const results = await TaskModel.find({ status });
+
+  return results.map((task) => {
+    return {
+      id: task._id,
+      title: task.title,
+      description: task.description,
+      status: task.status,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+    };
+  });
 }
 
 export default filterTaskByStatus;

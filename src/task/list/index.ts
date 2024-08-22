@@ -7,20 +7,46 @@ type SearchParams = {
 };
 
 async function getAllTasks({ id, skip, limit }: SearchParams) {
+  const tasks = [];
+
   if (id) {
     const task = await TaskModel.findById(id);
     if (task === null) return [];
 
-    return [task];
+    tasks.push(task);
   }
 
   if (skip && limit) {
     const skipParam = parseInt(skip, 10);
     const limitParam = parseInt(limit, 10);
-    return TaskModel.find().skip(skipParam).limit(limitParam);
+    const result = await TaskModel.find()
+      .sort({ createdAt: -1 })
+      .skip(skipParam)
+      .limit(limitParam);
+
+    if (result !== null) {
+      tasks.push(...result);
+    }
+  } else {
+    const result = await TaskModel.find().sort({ createdAt: -1 });
+
+    if (result !== null) {
+      tasks.push(...result);
+    }
   }
 
-  return TaskModel.find();
+  if (tasks.length === 0) return [];
+
+  return tasks.map((task) => {
+    return {
+      id: task._id,
+      title: task.title,
+      description: task.description,
+      status: task.status,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+    };
+  });
 }
 
 export default getAllTasks;
